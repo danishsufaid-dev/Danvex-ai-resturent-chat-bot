@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DANVEX AI | Restaurant Assistant</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;font-family:Arial,sans-serif;
+ background:#101010;color:#fff;
+ display:flex;justify-content:center;align-items:center;
+ min-height:100vh;padding:15px
+}
+.app{
+ width:100%;max-width:420px;height:650px;max-height:90vh;
+ background:#1b1b1b;border:1px solid #c9a227;
+ border-radius:18px;display:flex;flex-direction:column;overflow:hidden
+}
+header{
+ background:#080808;padding:18px;text-align:center;
+ border-bottom:1px solid #c9a227
+}
+header h2{margin:0;color:#d8b54a}
+header p{margin:7px 0 0;color:#ccc;font-size:12px}
+#messages{flex:1;padding:15px;overflow-y:auto}
+.msg{
+ padding:11px 13px;margin:9px 0;border-radius:12px;
+ max-width:85%;line-height:1.45;font-size:14px;white-space:pre-line
+}
+.bot{background:#303030;border:1px solid #444}
+.user{background:#c9a227;color:#111;margin-left:auto}
+.quick{display:flex;gap:7px;flex-wrap:wrap;padding:8px}
+.quick button{
+ background:#262626;color:#e0bd50;border:1px solid #c9a227;
+ border-radius:20px;padding:8px 10px;cursor:pointer
+}
+form{display:flex;padding:10px;gap:8px;border-top:1px solid #444}
+input{
+ flex:1;min-width:0;padding:12px;border-radius:20px;
+ border:1px solid #555;background:#292929;color:white
+}
+form button{
+ background:#c9a227;border:0;border-radius:20px;
+ padding:0 16px;font-weight:bold
+}
+footer{text-align:center;font-size:10px;color:#888;padding:7px}
+</style>
+</head>
+
+<body>
+<div class="app">
+<header>
+<h2>DANVEX AI</h2>
+<p>Restaurant Customer Assistant · Demo</p>
+</header>
+
+<div id="messages">
+<div class="msg bot">Assalam-o-Alaikum! 👋 Welcome to DANVEX Restaurant Assistant.
+
+How can I help you today?</div>
+</div>
+
+<div class="quick">
+<button onclick="quick('Menu')">🍔 Menu</button>
+<button onclick="quick('Prices')">💰 Prices</button>
+<button onclick="quick('Timings')">🕒 Timings</button>
+<button onclick="quick('Order')">🛵 Order Info</button>
+</div>
+
+<form id="chatForm">
+<input id="input" placeholder="Type your question..." autocomplete="off">
+<button type="submit">Send</button>
+</form>
+
+<footer>DEMO VERSION · Powered by DANVEX</footer>
+</div>
+
+<script>
+const messages = document.getElementById('messages');
+
+function addMessage(text, type){
+ const div = document.createElement('div');
+ div.className = 'msg ' + type;
+ div.textContent = text;
+ messages.appendChild(div);
