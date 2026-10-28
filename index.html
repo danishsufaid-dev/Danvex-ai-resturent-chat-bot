@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+w<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -85,3 +85,57 @@ function addMessage(text, type){
  div.className = 'msg ' + type;
  div.textContent = text;
  messages.appendChild(div);
+}
+
+function getReply(message) {
+  const text = message.toLowerCase();
+
+  if (text.includes("menu") || text.includes("food") || text.includes("burger")) {
+    return "🍔 MENU\nZinger Burger: Rs. 450\nChicken Burger: Rs. 350\nFries: Rs. 250\nPizza: Rs. 900";
+  }
+
+  if (text.includes("price") || text.includes("cost")) {
+    return "💰 Prices:\nZinger Burger: Rs. 450\nChicken Burger: Rs. 350\nFries: Rs. 250";
+  }
+
+  if (text.includes("timing") || text.includes("time") || text.includes("open")) {
+    return "🕒 Demo opening hours: 12 PM to 11 PM.";
+  }
+
+  if (text.includes("order") || text.includes("delivery")) {
+    return "🛵 This is a demo. Real orders are not enabled yet.";
+  }
+
+  if (text.includes("hello") || text.includes("hi") || text.includes("salam")) {
+    return "Assalam-o-Alaikum! Welcome to DANVEX AI. 😊";
+  }
+
+  return "Thank you! Ask me about Menu, Prices, Timings or Orders.";
+}
+
+function sendMessage(text) {
+  text = text.trim();
+  if (!text) return;
+
+  addMessage(text, "user");
+  const reply = getReply(text);
+  addMessage(reply, "bot");
+}
+
+document.querySelectorAll(".quick button").forEach(function(button) {
+  button.onclick = function() {
+    const text = button.textContent;
+    sendMessage(text);
+  };
+});
+
+document.getElementById("chatForm").onsubmit = function(event) {
+  event.preventDefault();
+  const input = document.getElementById("userInput");
+  sendMessage(input.value);
+  input.value = "";
+};
+
+</script>
+</body>
+</html>
