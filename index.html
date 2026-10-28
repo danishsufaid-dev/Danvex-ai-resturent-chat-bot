@@ -70,7 +70,7 @@ How can I help you today?</div>
 </div>
 
 <form id="chatForm">
-<input id="input" placeholder="Type your question..." autocomplete="off">
+<input id="userInput" placeholder="Type your question..." autocomplete="off">
 <button type="submit">Send</button>
 </form>
 
@@ -86,7 +86,9 @@ function addMessage(text, type){
  div.textContent = text;
  messages.appendChild(div);
 }
-
+function quick(type) {
+  sendMessage(type);
+ }
 function getReply(message) {
   const text = message.toLowerCase();
 
